@@ -1,0 +1,320 @@
+/* ============ Contenedor ============ */
+.horarios-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* ============ BANNER ============ */
+.hor-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: #fff;
+  border: 1px solid #eef0f4;
+  border-radius: 16px;
+  padding: 1.8rem 2rem;
+  overflow: hidden;
+  min-height: 130px;
+}
+
+.hor-banner-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #e91e63;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.25);
+  z-index: 2;
+}
+
+.hor-banner-text { z-index: 2; max-width: 45%; }
+
+.hor-banner-text h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.8rem;
+  color: #a855f7;
+  font-weight: 700;
+}
+
+.hor-banner-text p {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Decoraciones */
+.hor-deco {
+  position: absolute;
+  font-size: 1.4rem;
+  z-index: 3;
+}
+.hor-deco-confetti { top: 20%; right: 42%; font-size: 1.6rem; transform: rotate(15deg); }
+.hor-deco-star     { top: 55%; right: 6%; color: #f5b400; font-size: 1.8rem; }
+
+.hor-banner-image {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 38%;
+  background: #e0f2fe;
+  border-top-left-radius: 90px;
+  border-bottom-left-radius: 90px;
+  overflow: hidden;
+}
+
+.hor-banner-sticker {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(-4deg);
+  background: #fff;
+  color: #a855f7;
+  font-weight: 700;
+  padding: 0.7rem 1.1rem;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.82rem;
+  line-height: 1.25;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);
+  gap: 0.15rem;
+}
+.sticker-heart {
+  color: #e91e63;
+  font-size: 1rem;
+  text-align: right;
+  display: block;
+}
+
+/* ============ FILTROS ============ */
+.hor-filters {
+  display: flex;
+  gap: 1rem;
+  background: #fdf2f8;
+  padding: 1rem;
+  border-radius: 14px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.hor-filter-group {
+  flex: 1;
+  min-width: 240px;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: #fff;
+  border: 1px solid #f3e8ff;
+  border-radius: 10px;
+  padding: 0.6rem 0.9rem;
+}
+
+.hor-filter-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #faf5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hor-filter-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.hor-filter-fields label {
+  font-size: 0.72rem;
+  color: #999;
+  font-weight: 500;
+}
+
+.hor-date-input,
+.hor-franja-select,
+.hor-esp-select {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.88rem;
+  color: #333;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hor-date-input { width: 100%; }
+.hor-franja-select,
+.hor-esp-select { width: 100%; }
+
+.hor-generate-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 1.6rem;
+  background: #e91e63;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+  min-height: 58px;
+}
+.hor-generate-btn:hover { background: #c2185b; }
+.hor-generate-btn .arrow { font-size: 1.1rem; }
+
+/* ============ TABLA PRINCIPAL ============ */
+.hor-table-card {
+  background: #fff;
+  border: 1px solid #eef0f4;
+  border-radius: 14px;
+  padding: 1.4rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hor-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hor-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.hor-card-title h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #a855f7;
+}
+.hor-card-sub {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.hor-legend {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  font-size: 0.82rem;
+  color: #666;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* ============ Tabla semanal ============ */
+.hor-table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #f3f4f6;
+}
+
+.hor-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  min-width: 900px;
+}
+
+.hor-table thead th {
+  background: #faf5ff;
+  color: #a855f7;
+  padding: 0.7rem 0.5rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-align: center;
+  border-bottom: 1px solid #f3f4f6;
+  border-right: 1px solid #f3f4f6;
+}
+.hor-table thead th:last-child { border-right: none; }
+
+.hor-table thead .col-hora {
+  text-align: left;
+  padding-left: 1rem;
+  width: 110px;
+}
+
+.hor-table thead th .day-name { display: block; }
+.hor-table thead th .day-date {
+  display: block;
+  font-size: 0.72rem;
+  color: #b0b0b0;
+  font-weight: 400;
+  margin-top: 0.15rem;
+  min-height: 1em;
+}
+
+.hor-table tbody td {
+  padding: 0.55rem;
+  border-bottom: 1px solid #f3f4f6;
+  border-right: 1px solid #f3f4f6;
+  text-align: center;
+  color: #555;
+  vertical-align: middle;
+  height: 62px;
+}
+.hor-table tbody td:last-child { border-right: none; }
+.hor-table tbody tr:last-child td { border-bottom: none; }
+
+.hor-table tbody .col-hora {
+  text-align: left;
+  padding-left: 1rem;
+  font-weight: 500;
+  color: #666;
+  background: #fafafa;
+}
+
+.hor-cell-empty {
+  color: #d1d5db;
+  font-size: 1rem;
+}
+
+/* ============ Nota ============ */
+.hor-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  background: #eff6ff;
+  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
+  color: #555;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+.hor-note .note-icon { font-size: 1rem; line-height: 1.4; }
+.hor-note p { margin: 0; }
+
+/* ============ Responsive ============ */
+@media (max-width: 900px) {
+  .hor-banner { flex-direction: column; align-items: flex-start; }
+  .hor-banner-text { max-width: 100%; }
+  .hor-banner-image { display: none; }
+  .hor-generate-btn { width: 100%; justify-content: center; }
+}

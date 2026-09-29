@@ -1,0 +1,437 @@
+/* ============ Contenedor ============ */
+.pred-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* ============ BANNER ============ */
+.pred-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: #fff;
+  border: 1px solid #eef0f4;
+  border-radius: 16px;
+  padding: 1.8rem 2rem;
+  overflow: hidden;
+  min-height: 130px;
+}
+
+.pred-banner-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #e91e63;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.25);
+  z-index: 2;
+}
+
+.pred-banner-text { z-index: 2; max-width: 50%; }
+
+.pred-banner-text h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.8rem;
+  color: #a855f7;
+  font-weight: 700;
+}
+
+.pred-banner-text p {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.pred-deco {
+  position: absolute;
+  font-size: 1.4rem;
+  z-index: 3;
+}
+.pred-deco-confetti { top: 22%; right: 36%; font-size: 1.6rem; transform: rotate(15deg); }
+.pred-deco-heart    { top: 30%; right: 30%; color: #e91e63; font-size: 1.9rem; }
+.pred-deco-star     { top: 55%; right: 6%; color: #f5b400; font-size: 1.8rem; }
+
+.pred-banner-image {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 25%;
+  background: #facc15;
+  border-top-left-radius: 90px;
+  border-bottom-left-radius: 90px;
+  /* Coloca aquí la imagen */
+}
+
+/* ============ FILTROS ============ */
+.pred-filters {
+  display: flex;
+  gap: 0.7rem;
+  background: #fdf2f8;
+  padding: 0.9rem;
+  border-radius: 14px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.pred-filter {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border: 1px solid #f3e8ff;
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+}
+
+.pred-filter-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #faf5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pred-filter-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.pred-filter-fields label {
+  font-size: 0.7rem;
+  color: #999;
+  font-weight: 500;
+}
+
+.pred-filter-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.85rem;
+  color: #333;
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pred-update-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #e91e63;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0 1.6rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+  min-height: 46px;
+}
+.pred-update-btn:hover { background: #c2185b; }
+
+/* ============ KPI CARDS ============ */
+.pred-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.pred-kpi {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.1rem 1.2rem;
+  border-radius: 14px;
+}
+
+.pred-kpi.pink   { background: #fce7f3; }
+.pred-kpi.blue   { background: #dbeafe; }
+.pred-kpi.green  { background: #dcfce7; }
+.pred-kpi.yellow { background: #fef3c7; }
+
+.pred-kpi-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pred-kpi.pink   .pred-kpi-icon { background: #ec4899; }
+.pred-kpi.blue   .pred-kpi-icon { background: #0ea5e9; }
+.pred-kpi.green  .pred-kpi-icon { background: #22c55e; }
+.pred-kpi.yellow .pred-kpi-icon { background: #f5b400; }
+
+.pred-kpi-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.pred-kpi-label {
+  font-size: 0.8rem;
+  color: #555;
+}
+.pred-kpi-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+}
+.pred-kpi-value small {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #666;
+}
+.pred-kpi-value-sm { font-size: 1.1rem; }
+.pred-kpi-trend {
+  font-size: 0.72rem;
+  color: #22c55e;
+  font-weight: 600;
+}
+.pred-kpi-trend em {
+  color: #999;
+  font-style: normal;
+  font-weight: 400;
+}
+.pred-kpi-sub {
+  font-size: 0.72rem;
+  color: #999;
+}
+
+.pred-kpi-chart-icon {
+  margin-left: auto;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ============ GRÁFICO ============ */
+.pred-chart-card {
+  background: #fff;
+  border: 1px solid #eef0f4;
+  border-radius: 14px;
+  padding: 1.4rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pred-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pred-chart-title {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.pred-chart-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #faf5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pred-chart-title h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #a855f7;
+}
+.pred-chart-sub {
+  font-size: 0.78rem;
+  color: #999;
+}
+
+.pred-chart-legend {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 0.82rem;
+  color: #666;
+}
+.pred-chart-legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.pred-chart-legend .legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.pred-chart-area {
+  display: flex;
+  gap: 0.5rem;
+  height: 200px;
+}
+
+.pred-y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: #999;
+  padding-bottom: 0.2rem;
+}
+
+.pred-chart-plot {
+  flex: 1;
+  position: relative;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.pred-grid-lines {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.pred-grid-lines span {
+  display: block;
+  height: 1px;
+  background: #f0f0f0;
+}
+
+.pred-chart-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b0b0b0;
+  font-size: 0.9rem;
+}
+
+.pred-x-axis {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2rem;
+  font-size: 0.72rem;
+  color: #999;
+}
+
+/* ============ TABLA ============ */
+.pred-table-card {
+  background: #fff;
+  border: 1px solid #eef0f4;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.pred-table-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.1rem 1.4rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+.pred-table-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #a855f7;
+}
+
+.pred-table-wrapper { overflow-x: auto; }
+
+.pred-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.pred-table thead th {
+  background: #faf5ff;
+  color: #a855f7;
+  text-align: left;
+  padding: 0.9rem 1.2rem;
+  font-weight: 600;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.pred-table tbody td {
+  padding: 0.9rem 1.2rem;
+  border-top: 1px solid #f3f4f6;
+  color: #555;
+  vertical-align: middle;
+}
+
+.esp-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.pred-progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 160px;
+}
+
+.pred-progress-bar {
+  flex: 1;
+  height: 8px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.pred-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+.pred-progress-text {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #555;
+  min-width: 32px;
+  text-align: right;
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 1100px) {
+  .pred-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .pred-banner { flex-direction: column; align-items: flex-start; }
+  .pred-banner-text { max-width: 100%; }
+  .pred-banner-image { display: none; }
+  .pred-update-btn { width: 100%; justify-content: center; }
+  .pred-kpi-grid { grid-template-columns: 1fr; }
+  .pred-x-axis { font-size: 0.65rem; }
+}

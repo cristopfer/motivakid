@@ -1,0 +1,380 @@
+/* ============ Contenedor ============ */
+.pacientes-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* ============ BANNER ============ */
+.pac-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: #fff;
+  border: 1px solid #eef0f4;
+  border-radius: 16px;
+  padding: 1.8rem 2rem;
+  overflow: hidden;
+}
+
+.pac-banner-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #e91e63;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.25);
+}
+
+.pac-banner-text { z-index: 2; max-width: 55%; }
+
+.pac-banner-text h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.8rem;
+  color: #a855f7;
+  font-weight: 700;
+}
+
+.pac-banner-text p {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Decoraciones */
+.pac-deco {
+  position: absolute;
+  font-size: 1.4rem;
+}
+.pac-deco-confetti {
+  top: 25%;
+  left: 45%;
+  font-size: 1.8rem;
+  transform: rotate(15deg);
+}
+.pac-deco-heart {
+  top: 30%;
+  left: 55%;
+  color: #e91e63;
+  font-size: 2rem;
+}
+.pac-deco-star {
+  top: 25%;
+  right: 25%;
+  color: #f5b400;
+  font-size: 1.8rem;
+}
+
+.pac-banner-image {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 22%;
+  background: #facc15;
+  border-top-left-radius: 80px;
+  /* Aquí luego pones la imagen del niño con background-image */
+}
+
+/* ============ FILTROS ============ */
+.pac-filters {
+  display: flex;
+  gap: 0.8rem;
+  background: #fdf2f8;
+  padding: 0.9rem;
+  border-radius: 14px;
+  align-items: center;
+}
+
+.pac-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border-radius: 10px;
+  padding: 0 1rem;
+  height: 46px;
+  border: 1px solid #f3e8ff;
+}
+
+.pac-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  color: #333;
+  background: transparent;
+}
+.pac-search input::placeholder { color: #b0b0b0; }
+
+.pac-select {
+  height: 46px;
+  padding: 0 1rem;
+  border-radius: 10px;
+  border: 1px solid #f3e8ff;
+  background: #fff;
+  font-size: 0.9rem;
+  color: #555;
+  cursor: pointer;
+  min-width: 180px;
+}
+
+.pac-new-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 46px;
+  padding: 0 1.4rem;
+  background: #e91e63;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.pac-new-btn:hover { background: #c2185b; }
+.pac-new-btn .plus { font-size: 1.2rem; font-weight: 400; }
+
+/* ============ TABLA ============ */
+.pac-table-card {
+  background: #fff;
+  border: 1px solid #eef0f4;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.pac-table-wrapper {
+  overflow-x: auto;
+}
+
+.pac-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.pac-table thead th {
+  background: #faf5ff;
+  color: #a855f7;
+  text-align: left;
+  padding: 0.95rem 1rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.pac-table thead th .th-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.35rem;
+  vertical-align: middle;
+}
+
+.pac-table tbody td {
+  padding: 0.95rem 1rem;
+  border-top: 1px solid #f3f4f6;
+  color: #555;
+  vertical-align: middle;
+}
+
+.col-check { width: 44px; }
+.col-num   { width: 60px; }
+.col-acciones { text-align: center; width: 140px; }
+
+/* Fila vacía */
+.pac-empty-row td {
+  padding: 3.5rem 1rem;
+}
+
+.pac-empty-msg {
+  text-align: center;
+  color: #b0b0b0;
+  font-size: 0.95rem;
+}
+
+/* ============ FOOTER DE TABLA ============ */
+.pac-table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.4rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.pac-footer-text {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.pac-pagination {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.page-btn {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #555;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: #fdf2f8;
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.page-btn.active {
+  background: #e91e63;
+  color: #fff;
+  border-color: #e91e63;
+}
+
+/* ============ Celda con avatar + nombre ============ */
+.pac-cell-name {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.pac-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e91e63;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+
+/* ============ Badge de estado ============ */
+.pac-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.pac-badge .badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.pac-badge.activo {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.pac-badge.inactivo {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* ============ Botones de acción ============ */
+.pac-action-btn {
+  background: transparent;
+  border: 1px solid #e9d5ff;
+  color: #a855f7;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 0.15rem;
+  transition: background 0.15s;
+}
+.pac-action-btn.edit:hover {
+  background: #faf5ff;
+}
+.pac-action-btn.delete {
+  border-color: #fce7f3;
+  color: #e91e63;
+}
+.pac-action-btn.delete:hover {
+  background: #fdf2f8;
+}
+
+/* ============ Botón Activar ============ */
+.pac-action-btn.activate {
+  border-color: #dcfce7;
+  color: #22c55e;
+}
+.pac-action-btn.activate:hover:not(:disabled) {
+  background: #f0fdf4;
+}
+
+/* ============ Botones deshabilitados ============ */
+.pac-action-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: #fafafa;
+}
+.pac-action-btn:disabled:hover {
+  background: #fafafa;
+}
+
+.pac-overlay-loading {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  gap: 0.8rem;
+  color: #a855f7;
+  font-weight: 600;
+}
+
+.pac-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #f3e8ff;
+  border-top-color: #a855f7;
+  border-radius: 50%;
+  animation: pacSpin 0.7s linear infinite;
+}
+
+@keyframes pacSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 900px) {
+  .pac-banner { flex-direction: column; align-items: flex-start; }
+  .pac-banner-text { max-width: 100%; }
+  .pac-banner-image { display: none; }
+  .pac-filters { flex-wrap: wrap; }
+  .pac-search { min-width: 100%; }
+}

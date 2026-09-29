@@ -1,0 +1,165 @@
+/* ============ Overlay ============ */
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(50, 20, 80, 0.45);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  padding: 1.5rem;
+  animation: confirmFadeIn 0.18s ease;
+}
+
+@keyframes confirmFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ============ Card ============ */
+.confirm-card {
+  background: #fff;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem 1.8rem 1.6rem;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(90, 45, 130, 0.25);
+  animation: confirmSlideUp 0.22s ease;
+}
+
+@keyframes confirmSlideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ============ Ícono circular ============ */
+.confirm-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.confirm-card.confirm-danger .confirm-icon {
+  background: #e91e63;
+  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.3);
+}
+
+.confirm-card.confirm-success .confirm-icon {
+  background: #22c55e;
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.3);
+}
+
+/* ============ Textos ============ */
+.confirm-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  color: #5a2d82;
+  font-weight: 700;
+}
+
+.confirm-message {
+  margin: 0 0 1.6rem;
+  font-size: 0.92rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.confirm-message strong {
+  color: #a855f7;
+  font-weight: 600;
+}
+
+/* ============ Acciones ============ */
+.confirm-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.confirm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.confirm-btn-cancel {
+  background: #fff;
+  color: #7d7d7d;
+  border: 1.5px solid #e5e7eb;
+}
+.confirm-btn-cancel:hover {
+  background: #f7f7f7;
+}
+
+.confirm-btn-danger {
+  background: #e91e63;
+  color: #fff;
+}
+.confirm-btn-danger:hover {
+  background: #c2185b;
+}
+
+.confirm-btn-success {
+  background: #22c55e;
+  color: #fff;
+}
+.confirm-btn-success:hover {
+  background: #16a34a;
+}
+
+/* ============ Error ============ */
+.confirm-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #fde8ef;
+  color: #e91e63;
+  font-size: 0.82rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid #f8c8d8;
+  margin: -0.6rem 0 1rem;
+  text-align: left;
+}
+
+/* ============ Spinner ============ */
+.confirm-btn .spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: confirmSpin 0.6s linear infinite;
+  display: inline-block;
+  margin-right: 0.4rem;
+}
+
+@keyframes confirmSpin {
+  to { transform: rotate(360deg); }
+}
+
+.confirm-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 480px) {
+  .confirm-card { padding: 1.6rem 1.2rem 1.2rem; }
+  .confirm-actions { grid-template-columns: 1fr; }
+}

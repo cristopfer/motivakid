@@ -1,0 +1,395 @@
+/* ============ Contenedor ============ */
+.citas-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* ============ BANNER ============ */
+.cit-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: #fff;
+  border: 1px solid #eef0f4;
+  border-radius: 16px;
+  padding: 1.8rem 2rem;
+  overflow: hidden;
+  min-height: 130px;
+}
+
+.cit-banner-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #e91e63;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.25);
+  z-index: 2;
+}
+
+.cit-banner-text { z-index: 2; max-width: 45%; }
+
+.cit-banner-text h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.8rem;
+  color: #a855f7;
+  font-weight: 700;
+}
+
+.cit-banner-text p {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.cit-deco {
+  position: absolute;
+  font-size: 1.4rem;
+  z-index: 3;
+}
+.cit-deco-confetti { top: 20%; right: 42%; font-size: 1.6rem; transform: rotate(15deg); }
+.cit-deco-star     { top: 55%; right: 6%; color: #f5b400; font-size: 1.8rem; }
+
+.cit-banner-image {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 38%;
+  background: #e0f2fe;
+  border-top-left-radius: 90px;
+  border-bottom-left-radius: 90px;
+  overflow: hidden;
+}
+
+.cit-banner-sticker {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(-4deg);
+  background: #fff;
+  color: #a855f7;
+  font-weight: 700;
+  padding: 0.7rem 1.1rem;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.82rem;
+  line-height: 1.25;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);
+}
+
+/* ============ FILTROS ============ */
+.cit-filters {
+  display: flex;
+  gap: 0.7rem;
+  background: #fdf2f8;
+  padding: 0.9rem;
+  border-radius: 14px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.cit-filter {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border: 1px solid #f3e8ff;
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+}
+
+.cit-filter-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #faf5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cit-filter-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.cit-filter-fields label {
+  font-size: 0.7rem;
+  color: #999;
+  font-weight: 500;
+}
+
+.cit-filter-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.85rem;
+  color: #333;
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cit-agendar-btn {
+  background: #e91e63;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0 1.8rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.cit-agendar-btn:hover { background: #c2185b; }
+
+/* ============ LAYOUT 3 COLUMNAS ============ */
+.cit-layout {
+  display: grid;
+  grid-template-columns: 320px 1.5fr 1fr;
+  gap: 1.2rem;
+  align-items: start;
+}
+
+/* ============ Card base ============ */
+.cit-card {
+  background: #fff;
+  border: 1px solid #eef0f4;
+  border-radius: 14px;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cit-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cit-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cit-card-title h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #a855f7;
+}
+
+/* ============ Columna 1: Calendario ============ */
+.cit-col-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.cit-month-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.month-label {
+  font-size: 0.8rem;
+  color: #666;
+  margin-right: 0.3rem;
+}
+.nav-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #666;
+}
+.nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.cit-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cal-days-header,
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.2rem;
+}
+
+.cal-days-header span {
+  text-align: center;
+  font-size: 0.72rem;
+  color: #999;
+  font-weight: 600;
+  padding: 0.3rem 0;
+}
+
+.cal-cell {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #555;
+  padding: 0.5rem 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cal-cell:hover:not(.empty) { background: #faf5ff; }
+.cal-cell.empty { cursor: default; }
+
+/* Leyenda */
+.cit-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1rem;
+  font-size: 0.75rem;
+  color: #666;
+  padding-top: 0.6rem;
+  border-top: 1px solid #f3f4f6;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* Resumen semanal */
+.cit-resumen-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.resumen-item {
+  padding: 0.9rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+.resumen-item.purple { background: #f3e8ff; }
+.resumen-item.green  { background: #dcfce7; }
+.resumen-item.yellow { background: #fef3c7; }
+.resumen-item.pink   { background: #fce7f3; }
+
+.resumen-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #333;
+}
+.resumen-label {
+  font-size: 0.72rem;
+  color: #666;
+}
+
+/* ============ Columna 2: Lista de citas ============ */
+.cit-col-list { min-height: 500px; }
+
+.cit-count-badge {
+  background: #f3e8ff;
+  color: #a855f7;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+}
+
+.cit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.cit-empty-msg {
+  text-align: center;
+  color: #b0b0b0;
+  font-size: 0.9rem;
+  padding: 4rem 0;
+}
+
+/* ============ Columna 3: Detalle ============ */
+.cit-col-detail { min-height: 500px; }
+
+.cit-detail-empty {
+  text-align: center;
+  color: #b0b0b0;
+  font-size: 0.88rem;
+  padding: 3rem 0;
+  flex: 1;
+}
+
+.cit-detail-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #555;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.action-btn:hover:not(:disabled) { background: #faf5ff; }
+.action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.action-btn.danger { color: #e91e63; border-color: #fce7f3; }
+
+/* ============ Responsive ============ */
+@media (max-width: 1300px) {
+  .cit-layout { grid-template-columns: 300px 1fr; }
+  .cit-col-detail { grid-column: 1 / -1; }
+}
+
+@media (max-width: 900px) {
+  .cit-banner { flex-direction: column; align-items: flex-start; }
+  .cit-banner-text { max-width: 100%; }
+  .cit-banner-image { display: none; }
+  .cit-layout { grid-template-columns: 1fr; }
+  .cit-agendar-btn { width: 100%; min-height: 46px; }
+}

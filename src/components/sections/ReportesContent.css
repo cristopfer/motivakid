@@ -1,0 +1,339 @@
+/* ============ Contenedor ============ */
+.reportes-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* ============ BANNER ============ */
+.rep-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: #fff;
+  border: 1px solid #eef0f4;
+  border-radius: 16px;
+  padding: 1.8rem 2rem;
+  overflow: hidden;
+  min-height: 130px;
+}
+
+.rep-banner-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #e91e63;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.25);
+  z-index: 2;
+}
+
+.rep-banner-text { z-index: 2; max-width: 50%; }
+
+.rep-banner-text h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.8rem;
+  color: #a855f7;
+  font-weight: 700;
+}
+
+.rep-banner-text p {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.rep-deco {
+  position: absolute;
+  font-size: 1.4rem;
+  z-index: 3;
+}
+.rep-deco-confetti { top: 22%; right: 36%; font-size: 1.6rem; transform: rotate(15deg); }
+.rep-deco-heart    { top: 30%; right: 30%; color: #e91e63; font-size: 1.9rem; }
+.rep-deco-star     { top: 55%; right: 6%; color: #f5b400; font-size: 1.8rem; }
+
+.rep-banner-image {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 25%;
+  background: #facc15;
+  border-top-left-radius: 90px;
+  border-bottom-left-radius: 90px;
+  /* Coloca aquí la imagen de la niña */
+}
+
+/* ============ FILTROS ============ */
+.rep-filters {
+  display: flex;
+  gap: 0.7rem;
+  background: #fdf2f8;
+  padding: 0.9rem;
+  border-radius: 14px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.rep-filter {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border: 1px solid #f3e8ff;
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+}
+
+.rep-filter-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #faf5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rep-filter-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.rep-filter-fields label {
+  font-size: 0.7rem;
+  color: #999;
+  font-weight: 500;
+}
+
+.rep-filter-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.85rem;
+  color: #333;
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rep-generate-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #e91e63;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0 1.6rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+  min-height: 46px;
+}
+.rep-generate-btn:hover { background: #c2185b; }
+
+/* ============ CARD DE RESUMEN ============ */
+.rep-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: #faf5ff;
+  border: 1px solid #f3e8ff;
+  border-radius: 14px;
+  padding: 1.2rem 1.6rem;
+  flex-wrap: wrap;
+}
+
+.rep-summary-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 220px;
+}
+
+.rep-summary-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #a855f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rep-summary-info {
+  display: flex;
+  flex-direction: column;
+}
+.rep-summary-info h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #333;
+}
+.rep-summary-role {
+  font-size: 0.82rem;
+  color: #999;
+}
+
+.rep-summary-metrics {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.rep-metric {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0 1.2rem;
+  border-left: 1px solid #e9d5ff;
+}
+
+.rep-metric-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rep-metric-info {
+  display: flex;
+  flex-direction: column;
+}
+.rep-metric-label {
+  font-size: 0.72rem;
+  color: #999;
+}
+.rep-metric-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #a855f7;
+}
+
+/* ============ TABLA ============ */
+.rep-table-card {
+  background: #fff;
+  border: 1px solid #eef0f4;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.rep-table-wrapper { overflow-x: auto; }
+
+.rep-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.rep-table thead th {
+  background: #faf5ff;
+  color: #a855f7;
+  text-align: left;
+  padding: 0.95rem 1.2rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.th-flex {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.rep-table tbody td {
+  padding: 0.95rem 1.2rem;
+  border-top: 1px solid #f3f4f6;
+  color: #555;
+  vertical-align: middle;
+}
+
+.rep-empty-row td {
+  padding: 4rem 1rem;
+}
+
+.rep-empty-msg {
+  text-align: center;
+  color: #b0b0b0;
+  font-size: 0.95rem;
+}
+
+/* ============ FOOTER ============ */
+.rep-table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.4rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.rep-footer-text {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.rep-pagination {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.page-btn {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #555;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.page-btn:hover:not(:disabled) { background: #fdf2f8; }
+.page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.page-btn.active {
+  background: #e91e63;
+  color: #fff;
+  border-color: #e91e63;
+}
+.col-check { width: 44px; }
+.col-num   { width: 50px; }
+
+/* ============ Responsive ============ */
+@media (max-width: 900px) {
+  .rep-banner { flex-direction: column; align-items: flex-start; }
+  .rep-banner-text { max-width: 100%; }
+  .rep-banner-image { display: none; }
+  .rep-generate-btn { width: 100%; justify-content: center; }
+  .rep-summary-metrics { justify-content: flex-start; }
+  .rep-metric { border-left: none; padding: 0; }
+}

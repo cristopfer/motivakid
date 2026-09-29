@@ -1,0 +1,257 @@
+/* ============ Contenedor ============ */
+.pagos-ter-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* ============ BANNER ============ */
+.pter-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: #fff;
+  border: 1px solid #eef0f4;
+  border-radius: 16px;
+  padding: 1.8rem 2rem;
+  overflow: hidden;
+  min-height: 130px;
+}
+
+.pter-banner-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #e91e63;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.25);
+  z-index: 2;
+}
+
+.pter-banner-text { z-index: 2; max-width: 50%; }
+
+.pter-banner-text h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.8rem;
+  color: #a855f7;
+  font-weight: 700;
+}
+
+.pter-banner-text p {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Decoraciones */
+.pter-deco {
+  position: absolute;
+  font-size: 1.4rem;
+  z-index: 3;
+}
+.pter-deco-confetti { top: 22%; right: 36%; font-size: 1.6rem; transform: rotate(15deg); }
+.pter-deco-heart    { top: 30%; right: 30%; color: #e91e63; font-size: 1.9rem; }
+.pter-deco-star     { top: 55%; right: 6%; color: #f5b400; font-size: 1.8rem; }
+
+.pter-banner-image {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 25%;
+  background: #facc15;
+  border-top-left-radius: 90px;
+  border-bottom-left-radius: 90px;
+  /* Coloca aquí la imagen de la terapeuta y el niño */
+}
+
+/* ============ FILTROS ============ */
+.pter-filters {
+  display: flex;
+  gap: 0.7rem;
+  background: #fdf2f8;
+  padding: 0.9rem;
+  border-radius: 14px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.pter-filter {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border: 1px solid #f3e8ff;
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+}
+
+.pter-filter-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #faf5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pter-filter-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.pter-filter-fields label {
+  font-size: 0.7rem;
+  color: #999;
+  font-weight: 500;
+}
+
+.pter-filter-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.85rem;
+  color: #333;
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pter-new-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #e91e63;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0 1.6rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+  min-height: 46px;
+}
+.pter-new-btn:hover { background: #c2185b; }
+.pter-new-btn .arrow { font-size: 1.1rem; }
+
+/* ============ TABLA ============ */
+.pter-table-card {
+  background: #fff;
+  border: 1px solid #eef0f4;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.pter-table-wrapper { overflow-x: auto; }
+
+.pter-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.pter-table thead th {
+  background: #faf5ff;
+  color: #a855f7;
+  text-align: left;
+  padding: 0.95rem 1rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.th-flex {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.pter-table tbody td {
+  padding: 0.95rem 1rem;
+  border-top: 1px solid #f3f4f6;
+  color: #555;
+  vertical-align: middle;
+}
+
+.col-check { width: 44px; }
+.col-num   { width: 60px; }
+.col-acciones { text-align: center; width: 140px; }
+
+.pter-empty-row td {
+  padding: 4rem 1rem;
+}
+
+.pter-empty-msg {
+  text-align: center;
+  color: #b0b0b0;
+  font-size: 0.95rem;
+}
+
+/* ============ FOOTER ============ */
+.pter-table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.4rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.pter-footer-text {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.pter-pagination {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.page-btn {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #555;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.page-btn:hover:not(:disabled) { background: #fdf2f8; }
+.page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.page-btn.active {
+  background: #e91e63;
+  color: #fff;
+  border-color: #e91e63;
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 900px) {
+  .pter-banner { flex-direction: column; align-items: flex-start; }
+  .pter-banner-text { max-width: 100%; }
+  .pter-banner-image { display: none; }
+  .pter-new-btn { width: 100%; justify-content: center; }
+}
