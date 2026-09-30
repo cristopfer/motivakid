@@ -1,9 +1,6 @@
 import { Paciente } from '../models/Paciente';
 
-const API_URL =
-  (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL) ||
-  process.env.REACT_APP_API_URL ||
-  'http://localhost:8000';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 export async function listarPacientes() {
   const response = await fetch(`${API_URL}/pacientes`);
