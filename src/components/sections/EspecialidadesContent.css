@@ -245,6 +245,53 @@
   border-color: #e91e63;
 }
 
+/* ============ Botón Activar ============ */
+.esp-action-btn.activate {
+  border-color: #dcfce7;
+  color: #22c55e;
+}
+.esp-action-btn.activate:hover:not(:disabled) {
+  background: #f0fdf4;
+}
+
+/* ============ Botones deshabilitados ============ */
+.esp-action-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: #fafafa;
+}
+.esp-action-btn:disabled:hover {
+  background: #fafafa;
+}
+
+/* ============ Overlay de carga ============ */
+.esp-overlay-loading {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  gap: 0.8rem;
+  color: #a855f7;
+  font-weight: 600;
+}
+
+.esp-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #f3e8ff;
+  border-top-color: #a855f7;
+  border-radius: 50%;
+  animation: espSpin 0.7s linear infinite;
+}
+
+@keyframes espSpin {
+  to { transform: rotate(360deg); }
+}
+
 /* ============ Responsive ============ */
 @media (max-width: 900px) {
   .esp-banner { flex-direction: column; align-items: flex-start; }
