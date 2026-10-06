@@ -16,6 +16,19 @@ export function PacienteModal({ abierto, modo = 'crear', paciente = null, onCerr
     correo: '',
   });
 
+  const OPCIONES_DIAGNOSTICO = [
+    'Trastorno por Déficit de Atención e Hiperactividad (TDAH)',
+    'Trastorno del Espectro Autista (TEA)',
+    'Trastornos del Aprendizaje',
+    'Trastornos de la Comunicación',
+    'Discapacidad Intelectual',
+    'Trastornos de Ansiedad',
+    'Trastorno de Desregulación Disruptiva del Estado de Ánimo',
+    'Depresión',
+    'Trastorno Negativista Desafiante',
+    'Trastorno de Conducta',
+  ];
+
   /* Precargar datos cuando es edición */
   useEffect(() => {
     if (!abierto) return;
@@ -153,15 +166,19 @@ export function PacienteModal({ abierto, modo = 'crear', paciente = null, onCerr
 
             <div className="modal-field">
               <label>Diagnóstico <span>*</span></label>
-              <input
-                name="diagnostico"
-                type="text"
-                placeholder="Ej. Trastorno del lenguaje"
-                value={form.diagnostico}
-                onChange={handleChange}
-                autoComplete="off"
-                required
-              />
+                <select
+                  name="diagnostico"
+                  value={form.diagnostico}
+                  onChange={handleChange}
+                  required
+                  disabled={guardando}
+                  className="modal-select"
+                >
+                  <option value="">Selecciona un diagnóstico</option>
+                  {OPCIONES_DIAGNOSTICO.map((d) => (
+                    <option key={d} value={d}>{d}</option>
+                  ))}
+                </select>
             </div>
 
             <div className="modal-field">
