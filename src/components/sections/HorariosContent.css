@@ -105,7 +105,7 @@
   flex-wrap: wrap;
 }
 
-.hor-filter-group {
+.hor-filter {
   flex: 1;
   min-width: 240px;
   display: flex;
@@ -133,6 +133,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
+  min-width: 0;
 }
 
 .hor-filter-fields label {
@@ -141,9 +142,7 @@
   font-weight: 500;
 }
 
-.hor-date-input,
-.hor-franja-select,
-.hor-esp-select {
+.hor-filter-input {
   border: none;
   outline: none;
   background: transparent;
@@ -151,12 +150,9 @@
   color: #333;
   font-family: inherit;
   cursor: pointer;
+  width: 100%;
   padding: 0;
 }
-
-.hor-date-input { width: 100%; }
-.hor-franja-select,
-.hor-esp-select { width: 100%; }
 
 .hor-generate-btn {
   display: flex;
@@ -173,6 +169,7 @@
   transition: background 0.2s;
   white-space: nowrap;
   min-height: 58px;
+  font-family: inherit;
 }
 .hor-generate-btn:hover { background: #c2185b; }
 .hor-generate-btn .arrow { font-size: 1.1rem; }
@@ -211,22 +208,46 @@
   color: #999;
 }
 
-.hor-legend {
-  display: flex;
-  gap: 1.2rem;
-  align-items: center;
-  font-size: 0.82rem;
-  color: #666;
-}
-.legend-item {
+/* ============ Navegación de semana ============ */
+.hor-week-nav {
   display: flex;
   align-items: center;
   gap: 0.4rem;
 }
-.legend-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+
+.hor-week-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #a855f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.hor-week-btn:hover {
+  background: #faf5ff;
+  border-color: #e9d5ff;
+}
+
+.hor-week-today {
+  padding: 0 0.9rem;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #e9d5ff;
+  background: #faf5ff;
+  color: #a855f7;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+.hor-week-today:hover {
+  background: #f3e8ff;
 }
 
 /* ============ Tabla semanal ============ */
@@ -261,7 +282,9 @@
   width: 110px;
 }
 
-.hor-table thead th .day-name { display: block; }
+.hor-table thead th .day-name {
+  display: block;
+}
 .hor-table thead th .day-date {
   display: block;
   font-size: 0.72rem;
@@ -269,6 +292,16 @@
   font-weight: 400;
   margin-top: 0.15rem;
   min-height: 1em;
+}
+
+/* Columna de día de hoy */
+.hor-table thead th.dia-hoy {
+  background: #e91e63;
+  color: #fff;
+}
+.hor-table thead th.dia-hoy .day-date {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
 }
 
 .hor-table tbody td {
@@ -310,6 +343,107 @@
 }
 .hor-note .note-icon { font-size: 1rem; line-height: 1.4; }
 .hor-note p { margin: 0; }
+
+/* ============ Celda con cita ============ */
+.hor-cell {
+  padding: 0.4rem !important;
+  vertical-align: top;
+}
+
+.hor-cita {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: 8px;
+  background: #faf5ff;
+  border-left: 3px solid #a855f7;
+  text-align: left;
+  height: 100%;
+}
+
+.hor-cita-terapeuta {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #5a2d82;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hor-cita-paciente {
+  font-size: 0.7rem;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hor-cita-badge {
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  background: #f3f4f6;
+  color: #6b7280;
+}
+.hor-cita-badge.confirmada  { background: #dcfce7; color: #16a34a; }
+.hor-cita-badge.pendiente   { background: #fef3c7; color: #d97706; }
+.hor-cita-badge.cancelada   { background: #fce7f3; color: #e91e63; }
+.hor-cita-badge.asistio     { background: #dcfce7; color: #16a34a; }
+.hor-cita-badge.no-asistio  { background: #fce7f3; color: #e91e63; }
+
+/* ============ Estados de carga / error ============ */
+.hor-loading,
+.hor-error {
+  text-align: center;
+  padding: 0.8rem;
+  font-size: 0.85rem;
+}
+.hor-loading { color: #a855f7; }
+.hor-error   { color: #e91e63; }
+
+/* ============ Badge de especialidad ============ */
+.hor-esp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 10px;
+  border: 1.5px solid transparent;
+  font-size: 0.88rem;
+  font-weight: 600;
+  align-self: center;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+  height: 58px;
+}
+
+.hor-esp-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ============ Cita dentro de la celda ============ */
+.hor-cita {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: 8px;
+  border-left: 3px solid #a855f7;
+  text-align: left;
+  height: 100%;
+  transition: transform 0.15s;
+}
+.hor-cita:hover {
+  transform: translateY(-1px);
+}
 
 /* ============ Responsive ============ */
 @media (max-width: 900px) {

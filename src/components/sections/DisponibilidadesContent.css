@@ -266,21 +266,41 @@
   font-weight: 500;
 }
 
+/* ============ Botón Guardar disponibilidad ============ */
 .disp-edit-btn {
-  margin-left: auto;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  border: 1px solid #e5e7eb;
-  background: #fff;
-  padding: 0.6rem 1rem;
+  padding: 0.7rem 1.4rem;
+  background: #e91e63;
+  color: #fff;
+  border: none;
   border-radius: 10px;
-  font-size: 0.85rem;
-  color: #555;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  margin-left: auto;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.25);
 }
-.disp-edit-btn:hover { background: #faf5ff; }
+
+.disp-edit-btn:hover:not(:disabled) {
+  background: #c2185b;
+  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.35);
+}
+
+.disp-edit-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.disp-edit-btn:disabled {
+  background: #f3f4f6;
+  color: #b0b0b0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
 
 /* ---- Horarios: encabezado ---- */
 .disp-hours-header {
@@ -394,6 +414,156 @@
   line-height: 1.4;
 }
 .disp-note p { margin: 0; }
+
+/* ============ Lista de terapeutas ============ */
+.disp-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.15s, border-color 0.15s;
+  width: 100%;
+  margin-bottom: 0.4rem;
+}
+
+.disp-item:hover { background: #faf5ff; }
+
+.disp-item.active {
+  background: #faf5ff;
+  border-color: #e9d5ff;
+}
+
+.disp-item-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e91e63;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.disp-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.disp-item-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.disp-item-esp {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.disp-item-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+}
+.disp-item-badge.activo { background: #dcfce7; color: #16a34a; }
+.disp-item-badge.retirado { background: #f3f4f6; color: #6b7280; }
+
+/* ============ Grid de disponibilidad ============ */
+.disp-grid-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #f3f4f6;
+}
+
+.disp-grid {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.disp-grid thead th {
+  background: #faf5ff;
+  color: #a855f7;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.7rem 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid #f3f4f6;
+  border-right: 1px solid #f3f4f6;
+}
+.disp-grid thead th:last-child { border-right: none; }
+
+.disp-grid thead .col-hora {
+  text-align: left;
+  padding-left: 1rem;
+  width: 110px;
+}
+
+.disp-grid tbody td {
+  border-bottom: 1px solid #f3f4f6;
+  border-right: 1px solid #f3f4f6;
+  padding: 0.4rem;
+  text-align: center;
+}
+.disp-grid tbody td:last-child { border-right: none; }
+.disp-grid tbody tr:last-child td { border-bottom: none; }
+
+.disp-grid tbody .col-hora {
+  text-align: left;
+  padding-left: 1rem;
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 500;
+  background: #fafafa;
+}
+
+/* Celda con botón toggle */
+.disp-cell { padding: 0.35rem !important; }
+
+.disp-block {
+  width: 100%;
+  height: 34px;
+  border-radius: 8px;
+  border: 1.5px dashed #e5e7eb;
+  background: #fff;
+  color: #b8b8b8;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.disp-block:hover {
+  border-color: #e9d5ff;
+  background: #faf5ff;
+}
+
+.disp-block.on {
+  background: #dcfce7;
+  border: 1.5px solid #22c55e;
+  color: #16a34a;
+  font-weight: 700;
+}
+
+.disp-empty-msg {
+  text-align: center;
+  color: #b0b0b0;
+  font-size: 0.9rem;
+  padding: 3rem 0;
+}
 
 /* ============ Responsive ============ */
 @media (max-width: 1100px) {
