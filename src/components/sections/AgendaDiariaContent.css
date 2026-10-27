@@ -277,6 +277,161 @@
   color: #888;
 }
 
+/* ============ Filtros individuales ============ */
+.agd-filters {
+  display: flex;
+  gap: 0.7rem;
+  background: #fdf2f8;
+  padding: 0.9rem;
+  border-radius: 14px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.agd-filter {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border: 1px solid #f3e8ff;
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+}
+
+.agd-filter-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #faf5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.agd-filter-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.agd-filter-fields label {
+  font-size: 0.7rem;
+  color: #999;
+  font-weight: 500;
+}
+
+.agd-filter-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.85rem;
+  color: #333;
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============ Celda con avatar del paciente ============ */
+.agd-cell-paciente {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.agd-paciente-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e91e63;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ============ Botones de control ============ */
+.agd-control-btns {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.agd-btn-asistio,
+.agd-btn-no-asistio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 20px;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+
+.agd-btn-asistio {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.agd-btn-asistio:hover { background: #bbf7d0; }
+
+.agd-btn-no-asistio {
+  background: #fce7f3;
+  color: #be123c;
+}
+.agd-btn-no-asistio:hover { background: #fbcfe8; }
+
+/* ============ Badge de estado final (asistió / no asistió) ============ */
+.agd-estado-badge {
+  display: inline-block;
+  padding: 0.45rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.agd-estado-badge.asistio { background: #dcfce7; color: #16a34a; }
+.agd-estado-badge.no-asistio { background: #fce7f3; color: #be123c; }
+
+/* ============ Columna Estado ============ */
+.col-estado {
+  width: 140px;
+  text-align: center;
+}
+
+.agd-estado-badge {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.agd-estado-badge.asistio       { background: #dcfce7; color: #16a34a; }
+.agd-estado-badge.no-asistio    { background: #fce7f3; color: #be123c; }
+.agd-estado-badge.pendiente     { background: #fef3c7; color: #b45309; }
+.agd-estado-badge.cancelada     { background: #f3f4f6; color: #6b7280; }
+.agd-estado-badge.default       { background: #e5e7eb; color: #4b5563; }
+
+.agd-control-done {
+  color: #16a34a;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
 /* ============ Responsive ============ */
 @media (max-width: 900px) {
   .agd-banner { flex-direction: column; align-items: flex-start; }
