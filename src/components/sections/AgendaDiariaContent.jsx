@@ -6,11 +6,25 @@ import { useAsistenciaViewModel } from '../../hooks/useAsistenciaViewModel';
 import { ConfirmModal } from './ConfirmModal';
 
 function colorEstadoAsistencia(estado) {
-  const e = String(estado || '').toLowerCase();
-  if (e.includes('no asistio') || e.includes('falto')) return 'no-asistio';
-  if (e.includes('asistio')) return 'asistio';
+  const e = String(estado || '').toLowerCase().trim();
+
+  if (
+    e.includes('no asistio') ||
+    e.includes('no asistió') ||
+    e.includes('falto') ||
+    e.includes('faltó') ||
+    e.includes('inasistencia')
+  ) {
+    return 'no-asistio';
+  }
+
+  if (e.includes('asistio') || e.includes('asistió')) {
+    return 'asistio';
+  }
+
   if (e.includes('cancel')) return 'cancelada';
-  if (e.includes('pendien') || e.includes('reserv')) return 'pendiente';
+  if (e.includes('pendien') || e.includes('reserv') || e === '') return 'pendiente';
+
   return 'default';
 }
 
@@ -18,8 +32,7 @@ export function AgendaDiariaContent() {
   const [filtroEspecialidad, setFiltroEspecialidad] = useState('todas');
   const [filtroTerapeuta, setFiltroTerapeuta] = useState('todos');
 
-  /* Modal de confirmación */
-  const [citaAccion, setCitaAccion] = useState(null);   // { cita, tipo: 'asistio' | 'no-asistio' }
+  const [citaAccion, setCitaAccion] = useState(null);
   const [procesando, setProcesando] = useState(false);
   const [errorAccion, setErrorAccion] = useState('');
 
@@ -34,7 +47,7 @@ export function AgendaDiariaContent() {
     registrarAsistencia,
   } = useAsistenciaViewModel();
 
-  /* Terapeutas filtrados */
+  // Terapeutas filtrados por especialidad
   const terapeutasFiltrados = useMemo(() => {
     if (filtroEspecialidad === 'todas') return terapeutas.filter((t) => t.estado);
     return terapeutas.filter(
@@ -42,6 +55,7 @@ export function AgendaDiariaContent() {
     );
   }, [terapeutas, filtroEspecialidad]);
 
+  // Resetear terapeuta si ya no pertenece a la especialidad
   useEffect(() => {
     if (filtroTerapeuta === 'todos') return;
     const existe = terapeutasFiltrados.some(
@@ -50,6 +64,7 @@ export function AgendaDiariaContent() {
     if (!existe) setFiltroTerapeuta('todos');
   }, [filtroEspecialidad, terapeutasFiltrados, filtroTerapeuta]);
 
+  // Cargar agenda cuando cambia el terapeuta
   useEffect(() => {
     if (filtroTerapeuta === 'todos') {
       limpiar();
@@ -58,6 +73,7 @@ export function AgendaDiariaContent() {
     cargarAsistencia(Number(filtroTerapeuta));
   }, [filtroTerapeuta, cargarAsistencia, limpiar]);
 
+  // Datos auxiliares
   const terapeutaActual = useMemo(
     () => terapeutas.find((t) => String(t.id) === String(filtroTerapeuta)),
     [terapeutas, filtroTerapeuta]
@@ -70,8 +86,12 @@ export function AgendaDiariaContent() {
 
   const citasMostrar = citas;
 
-  /* Abrir modal */
+  // Handlers
   const abrirConfirmacion = (cita, tipo) => {
+    if (filtroTerapeuta === 'todos') {
+      alert('Selecciona un terapeuta primero');
+      return;
+    }
     setCitaAccion({ cita, tipo });
     setErrorAccion('');
   };
@@ -82,30 +102,32 @@ export function AgendaDiariaContent() {
     setErrorAccion('');
   };
 
-  /* Confirmar */
   const confirmarAccion = async () => {
     if (!citaAccion) return;
-    const { cita, tipo } = citaAccion;
-    const estado = tipo === 'asistio' ? 'Asistió' : 'No asistió';
+    
+    const { tipo } = citaAccion;
+    const estado = tipo === 'asistio' ? 'Asistió' : 'No Asistió';
 
     try {
       setProcesando(true);
       setErrorAccion('');
-      await registrarAsistencia(cita.id_cita, estado);
+      
+      // 👇 Enviamos id_terapeuta y estado (como espera el backend)
+      await registrarAsistencia(Number(filtroTerapeuta), estado);
+
       setProcesando(false);
       setCitaAccion(null);
-
-      /* Recargar la agenda */
-      cargarAsistencia(Number(filtroTerapeuta));
+      
+      // Refrescar tabla
+      await cargarAsistencia(Number(filtroTerapeuta));
     } catch (err) {
       setProcesando(false);
-      setErrorAccion(err.message || 'Error al registrar asistencia');
+      setErrorAccion(err.message || 'Error al guardar');
     }
   };
 
   return (
     <div className="agenda-content">
-
       {/* ============ BANNER ============ */}
       <section className="agd-banner">
         <div className="agd-banner-icon">
@@ -146,11 +168,9 @@ export function AgendaDiariaContent() {
               className="agd-filter-input"
             >
               <option value="todas">Todas las especialidades</option>
-              {especialidades
-                .filter((e) => e.estado)
-                .map((e) => (
-                  <option key={e.id} value={String(e.id)}>{e.nombre}</option>
-                ))}
+              {especialidades.filter((e) => e.estado).map((e) => (
+                <option key={e.id} value={String(e.id)}>{e.nombre}</option>
+              ))}
             </select>
           </div>
         </div>
@@ -229,9 +249,7 @@ export function AgendaDiariaContent() {
               {filtroTerapeuta === 'todos' ? (
                 <tr className="agd-empty-row">
                   <td colSpan="4">
-                    <div className="agd-empty-msg">
-                      <p>Selecciona un terapeuta para ver su agenda</p>
-                    </div>
+                    <div className="agd-empty-msg"><p>Selecciona un terapeuta para ver su agenda</p></div>
                   </td>
                 </tr>
               ) : cargando ? (
@@ -243,54 +261,57 @@ export function AgendaDiariaContent() {
               ) : error ? (
                 <tr className="agd-empty-row">
                   <td colSpan="4">
-                    <div className="agd-empty-msg">
-                      <p style={{ color: '#e91e63' }}>{error}</p>
-                    </div>
+                    <div className="agd-empty-msg"><p style={{ color: '#e91e63' }}>{error}</p></div>
                   </td>
                 </tr>
               ) : citasMostrar.length === 0 ? (
                 <tr className="agd-empty-row">
                   <td colSpan="4">
-                    <div className="agd-empty-msg">
-                      <p>No hay citas programadas para hoy</p>
-                    </div>
+                    <div className="agd-empty-msg"><p>No hay citas programadas para hoy</p></div>
                   </td>
                 </tr>
               ) : (
                 citasMostrar.map((c, i) => {
-                  let estado = c.estado_asistencia || 'Pendiente';
+                  let estado = c.estado_asistencia && c.estado_asistencia.trim() !== ''
+                    ? c.estado_asistencia
+                    : 'Pendiente';
+
                   const estadoClase = colorEstadoAsistencia(estado);
+
+                  /* 👇 Normalizar el texto que se muestra en el badge */
+                  let estadoMostrar = estado;
+                  const eLower = String(estado).toLowerCase();
+                  if (eLower.includes('falto') || eLower.includes('faltó') || eLower.includes('inasistencia')) {
+                    estadoMostrar = 'No asistió';
+                  }
+
                   const yaRegistrado = estadoClase === 'asistio' || estadoClase === 'no-asistio';
 
-                return (
-                  <tr key={i}>
-                    <td className="col-hora">
-                      {String(c.hora_inicio).substring(0, 5)} - {String(c.hora_fin).substring(0, 5)}
-                    </td>
-                    <td>
-                      <div className="agd-cell-paciente">
-                        <div className="agd-paciente-avatar">
-                          {String(c.paciente || '?').charAt(0).toUpperCase()}
+                  return (
+                    <tr key={i}>
+                      <td className="col-hora">
+                        {String(c.hora_inicio).substring(0, 5)} - {String(c.hora_fin).substring(0, 5)}
+                      </td>
+                      <td>
+                        <div className="agd-cell-paciente">
+                          <div className="agd-paciente-avatar">
+                            {String(c.paciente || '?').charAt(0).toUpperCase()}
+                          </div>
+                          <span>{c.paciente || '—'}</span>
                         </div>
-                        <span>{c.paciente || '—'}</span>
-                      </div>
-                    </td>
-                    {/* Columna Estado */}
-                    <td className="col-estado">
-                      <span className={`agd-estado-badge ${estadoClase}`}>
-                        {estado}
-                      </span>
-                    </td>
-                    {/* Columna Control */}
-                    <td className="col-control">
-                      {yaRegistrado ? (
-                        <span className="agd-control-done">✔ Registrado</span>
-                      ) : (
+                      </td>
+                      <td className="col-estado">
+                        <span className={`agd-estado-badge ${estadoClase}`}>
+                          {estadoMostrar}
+                        </span>
+                      </td>
+                      <td className="col-control">
                         <div className="agd-control-btns">
                           <button
                             type="button"
-                            className="agd-btn-asistio"
+                            className={`agd-btn-asistio ${yaRegistrado && estadoClase === 'asistio' ? 'is-active' : ''}`}
                             onClick={() => abrirConfirmacion(c, 'asistio')}
+                            disabled={yaRegistrado}
                           >
                             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
                               <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/>
@@ -299,8 +320,9 @@ export function AgendaDiariaContent() {
                           </button>
                           <button
                             type="button"
-                            className="agd-btn-no-asistio"
+                            className={`agd-btn-no-asistio ${yaRegistrado && estadoClase === 'no-asistio' ? 'is-active' : ''}`}
                             onClick={() => abrirConfirmacion(c, 'no-asistio')}
+                            disabled={yaRegistrado}
                           >
                             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
                               <path d="M19 6.4L17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"/>
@@ -308,12 +330,11 @@ export function AgendaDiariaContent() {
                             No asistió
                           </button>
                         </div>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })
-            )}
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
             </tbody>
           </table>
         </div>

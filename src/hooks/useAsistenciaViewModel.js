@@ -10,6 +10,7 @@ export function useAsistenciaViewModel() {
   const [guardando, setGuardando] = useState(false);
   const [error, setError] = useState(null);
 
+  /* Cargar agenda del día */
   const cargarAsistencia = useCallback(async (idTerapeuta) => {
     if (!idTerapeuta) {
       setCitas([]);
@@ -34,12 +35,15 @@ export function useAsistenciaViewModel() {
     setError(null);
   }, []);
 
-  /* 👇 Nuevo */
-  const registrarAsistencia = async (idCita, estado) => {
+  /* Registrar asistencia
+     👇 Firma: (idTerapeuta, estado) — NO recibe id_cita
+     El backend resuelve el id_cita por sí mismo usando el terapeuta + hoy.
+  */
+  const registrarAsistencia = async (idTerapeuta, estado) => {
     setGuardando(true);
     setError(null);
     try {
-      const resultado = await controlAsistencia(idCita, estado);
+      const resultado = await controlAsistencia(idTerapeuta, estado);
       return resultado;
     } catch (err) {
       setError(err.message);

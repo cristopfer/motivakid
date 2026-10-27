@@ -3,7 +3,7 @@ const API_URL =
   process.env.REACT_APP_API_URL ||
   'http://localhost:8000';
 
-/* Obtiene las citas del día de hoy para un terapeuta */
+/* ============ Consultar asistencia de hoy para un terapeuta ============ */
 export async function obtenerAsistenciaHoy(idTerapeuta) {
   const response = await fetch(`${API_URL}/asistencia/hoy/${idTerapeuta}`);
 
@@ -21,17 +21,18 @@ export async function obtenerAsistenciaHoy(idTerapeuta) {
     throw new Error(data.message || 'No se pudo obtener la agenda');
   }
 
-  return data.data; // array de citas de hoy
+  return data.data;
 }
 
 /* ============ Registrar asistencia (POST) ============ */
-export async function controlAsistencia(idCita, estado) {
+/* Nota: el backend espera id_terapeuta y estado */
+export async function controlAsistencia(idTerapeuta, estado) {
   const response = await fetch(`${API_URL}/asistencia/control`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      id_cita: idCita,
-      estado, // 'Asistió' | 'No asistió'
+      id_terapeuta: idTerapeuta,
+      estado: estado, // 'Asistió' | 'No Asistió' (el SP lo normaliza)
     }),
   });
 
@@ -39,7 +40,11 @@ export async function controlAsistencia(idCita, estado) {
     let detalle = 'Error al registrar la asistencia';
     try {
       const err = await response.json();
-      detalle = err.detail || detalle;
+      if (Array.isArray(err.detail)) {
+        detalle = err.detail.map((d) => `${d.loc.join('.')}: ${d.msg}`).join(' | ');
+      } else {
+        detalle = err.detail || detalle;
+      }
     } catch (_) { /* noop */ }
     throw new Error(detalle);
   }
@@ -49,5 +54,5 @@ export async function controlAsistencia(idCita, estado) {
     throw new Error(data.message || 'No se pudo registrar la asistencia');
   }
 
-  return data; // { success, id_asistencia, message }
+  return data;
 }
