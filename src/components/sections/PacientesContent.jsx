@@ -310,6 +310,7 @@ export function PacientesContent() {
 
       {/* Modal crear/editar */}
       <PacienteModal
+        key={pacienteEditando ? `editar-${pacienteEditando.id}` : 'crear'}
         abierto={modalAbierto}
         modo={pacienteEditando ? 'editar' : 'crear'}
         paciente={pacienteEditando}
