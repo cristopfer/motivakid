@@ -15,8 +15,8 @@ export function PrediccionContent() {
   };
 
   /* Gráfico: series vacías (mantengo el eje para estructura visual) */
-  const serieRequeridas = [];
-  const serieRealizadas = [];
+  //const serieRequeridas = [];
+  //const serieRealizadas = [];
 
   /* Detalle por especialidad (sin valores) */
   const detalleEspecialidades = [

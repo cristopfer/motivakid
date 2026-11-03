@@ -248,6 +248,201 @@
   border-color: #e91e63;
 }
 
+/* ============ Filtros individuales ============ */
+.pter-filters {
+  display: flex;
+  gap: 0.7rem;
+  background: #fdf2f8;
+  padding: 0.9rem;
+  border-radius: 14px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.pter-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border: 1px solid #f3e8ff;
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+  min-width: 220px;
+}
+
+.pter-filter-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #faf5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pter-filter-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.pter-filter-fields label {
+  font-size: 0.7rem;
+  color: #999;
+  font-weight: 500;
+}
+
+.pter-filter-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.85rem;
+  color: #333;
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%;
+  padding: 0;
+}
+
+/* Buscador */
+.pter-search {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border: 1px solid #f3e8ff;
+  border-radius: 10px;
+  padding: 0 1rem;
+  height: 50px;
+}
+.pter-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  color: #333;
+  background: transparent;
+}
+
+/* Botón Actualizar */
+.pter-new-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #e91e63;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0 1.6rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+  min-height: 50px;
+  font-family: inherit;
+}
+.pter-new-btn:hover:not(:disabled) { background: #c2185b; }
+.pter-new-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Celda terapeuta */
+.pter-cell-terapeuta {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.pter-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e91e63;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Badge especialidad */
+.pter-badge.especialidad {
+  background: #ede9fe;
+  color: #6b21a8;
+  font-weight: 500;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+}
+
+/* Badge estado */
+.pter-badge.estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+.pter-badge.estado .badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.pter-badge.estado.pagado    { background: #dcfce7; color: #16a34a; }
+.pter-badge.estado.pendiente { background: #fee2e2; color: #b91c1c; }
+.pter-badge.estado.anulado   { background: #f3f4f6; color: #6b7280; }
+
+/* Botón editar */
+.pter-action-btn {
+  background: transparent;
+  border: 1px solid #e9d5ff;
+  color: #a855f7;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.pter-action-btn.edit:hover { background: #faf5ff; }
+
+/* Paginación */
+.page-btn {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #555;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.page-btn:hover:not(:disabled) { background: #fdf2f8; }
+.page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.page-info {
+  font-size: 0.82rem;
+  color: #666;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
 /* ============ Responsive ============ */
 @media (max-width: 900px) {
   .pter-banner { flex-direction: column; align-items: flex-start; }

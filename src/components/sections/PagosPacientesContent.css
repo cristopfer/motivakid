@@ -232,6 +232,137 @@
   border-color: #e91e63;
 }
 
+/* ============ Celda con avatar ============ */
+.ppac-cell-paciente {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.ppac-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e91e63;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ============ Badges ============ */
+.ppac-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+.ppac-badge .badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Forma de pago */
+.ppac-badge.tarjeta        { background: #dbeafe; color: #1e40af; }
+.ppac-badge.transferencia  { background: #ede9fe; color: #6b21a8; }
+.ppac-badge.efectivo       { background: #dcfce7; color: #16a34a; }
+.ppac-badge.default        { background: #f3f4f6; color: #4b5563; }
+
+/* Estado */
+.ppac-badge.estado.pagado     { background: #dcfce7; color: #16a34a; }
+.ppac-badge.estado.pendiente  { background: #fef3c7; color: #b45309; }
+.ppac-badge.estado.anulado    { background: #f3f4f6; color: #6b7280; }
+.ppac-badge.estado.default    { background: #e5e7eb; color: #4b5563; }
+
+/* ============ Botones de acción ============ */
+.ppac-action-btn {
+  background: transparent;
+  border: 1px solid #e9d5ff;
+  color: #a855f7;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 0.15rem;
+  transition: background 0.15s;
+}
+.ppac-action-btn.edit:hover { background: #faf5ff; }
+.ppac-action-btn.delete {
+  border-color: #fce7f3;
+  color: #e91e63;
+}
+.ppac-action-btn.delete:hover { background: #fdf2f8; }
+
+/* Paginación */
+.page-info {
+  font-size: 0.82rem;
+  color: #666;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+}
+.page-btn {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #555;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.page-btn:hover:not(:disabled) {
+  background: #fdf2f8;
+}
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.ppac-select-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* ============ Badge de estado de la cita ============ */
+.ppac-badge.cita {
+  font-weight: 500;
+}
+.ppac-badge.cita.atendida    { background: #dcfce7; color: #16a34a; }
+.ppac-badge.cita.pendiente   { background: #fee2e2; color: #b91c1c; }
+.ppac-badge.cita.reservada   { background: #fef3c7; color: #b45309; } 
+.ppac-badge.cita.cancelada   { background: #fce7f3; color: #be123c; }
+.ppac-badge.cita.confirmada  { background: #dbeafe; color: #1e40af; }
+.ppac-badge.cita.default     { background: #f3f4f6; color: #6b7280; }
+
+/* ============ Botón editar deshabilitado ============ */
+.ppac-action-btn.edit:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: #fafafa;
+  border-color: #e5e7eb;
+  color: #b0b0b0;
+}
+
+.ppac-action-btn.edit:disabled:hover {
+  background: #fafafa;
+}
+
 /* ============ Responsive ============ */
 @media (max-width: 900px) {
   .ppac-banner { flex-direction: column; align-items: flex-start; }

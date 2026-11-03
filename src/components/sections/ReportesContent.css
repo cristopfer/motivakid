@@ -328,6 +328,88 @@
 .col-check { width: 44px; }
 .col-num   { width: 50px; }
 
+/* ============ Badges ============ */
+.rep-badge {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.rep-badge.especialidad {
+  background: #ede9fe;
+  color: #6b21a8;
+}
+
+.rep-badge.estado.pagado     { background: #dcfce7; color: #16a34a; }
+.rep-badge.estado.pendiente  { background: #fee2e2; color: #b91c1c; }
+.rep-badge.estado.anulado    { background: #f3f4f6; color: #6b7280; }
+.rep-badge.estado.default    { background: #e5e7eb; color: #4b5563; }
+
+/* Paginación */
+.page-btn {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #555;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.page-btn:hover:not(:disabled) { background: #fdf2f8; }
+.page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.page-info {
+  font-size: 0.82rem;
+  color: #666;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+/* ============ Botón Generar Reporte ============ */
+.rep-generate-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #e91e63;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0 1.6rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  white-space: nowrap;
+  min-height: 50px;
+  font-family: inherit;
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.25);
+}
+
+.rep-generate-btn:hover:not(:disabled) {
+  background: #c2185b;
+  box-shadow: 0 6px 16px rgba(233, 30, 99, 0.35);
+}
+
+.rep-generate-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.rep-generate-btn:disabled {
+  background: #f3f4f6;
+  color: #b0b0b0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
 /* ============ Responsive ============ */
 @media (max-width: 900px) {
   .rep-banner { flex-direction: column; align-items: flex-start; }

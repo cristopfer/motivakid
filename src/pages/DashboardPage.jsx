@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './DashboardPage.css';
 import logo from '../assets/logo-motivakids.png';
+import { useEstadisticasViewModel } from '../hooks/useEstadisticasViewModel';
 import { PacientesContent } from '../components/sections/PacientesContent';
 import { TerapeutasContent } from '../components/sections/TerapeutasContent';
 import { EspecialidadesContent } from '../components/sections/EspecialidadesContent';
@@ -14,23 +15,28 @@ import { ReportesContent } from '../components/sections/ReportesContent';
 import { PrediccionContent } from '../components/sections/PrediccionContent';
 
 /* ============ Contenido de la pantalla "Inicio" ============ */
-function InicioContent() {
-  const stats = {
-    pacientes: 0,
-    terapeutas: 0,
-    citasMes: 0,
-    pagos: 0,
-  };
+function InicioContent({ onIrAPrediccion }) {
+  const {
+    kpis,
+    especialidades,
+    cargando,
+    error,
+    calcularVariacion,
+  } = useEstadisticasViewModel();
 
-  const citasPorEspecialidad = [
-    { nombre: 'Fisioterapia', valor: 0, color: '#ec4899' },
-    { nombre: 'Lenguaje',     valor: 0, color: '#14b8a6' },
-    { nombre: 'Psicología',   valor: 0, color: '#f5b400' },
-    { nombre: 'Otras',        valor: 0, color: '#a855f7' },
-  ];
+  /* 👇 Estado para alternar entre "Este mes" / "Mes anterior" */
+  const [periodoGrafico, setPeriodoGrafico] = useState('actual');
 
-  const proximasCitas = [];
-  const maxValor = Math.max(...citasPorEspecialidad.map(c => c.valor), 1);
+  /* Datos según el periodo seleccionado */
+  const especialidadesActuales = especialidades.map((e) => ({
+    ...e,
+    valor: periodoGrafico === 'actual' ? e.mesActual : e.mesAnterior,
+  }));
+
+  const maxValorActual = Math.max(
+    ...especialidadesActuales.map((e) => e.valor),
+    1
+  );
 
   return (
     <>
@@ -56,6 +62,7 @@ function InicioContent() {
 
       {/* Stats cards */}
       <section className="stats-grid">
+        {/* Pacientes */}
         <div className="stat-card pink">
           <div className="stat-icon">
             <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff">
@@ -64,11 +71,15 @@ function InicioContent() {
           </div>
           <div className="stat-info">
             <span className="stat-label">Total de pacientes</span>
-            <span className="stat-value">{stats.pacientes}</span>
-            <span className="stat-trend">↑ 0% <em>vs. mes anterior</em></span>
+            <span className="stat-value">{cargando ? '...' : kpis.pacientes.actual}</span>
+            <span className="stat-trend">
+              ↑ {calcularVariacion(kpis.pacientes.actual, kpis.pacientes.anterior)}%
+              <em> vs. mes anterior</em>
+            </span>
           </div>
         </div>
 
+        {/* Terapeutas */}
         <div className="stat-card teal">
           <div className="stat-icon">
             <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff">
@@ -77,11 +88,15 @@ function InicioContent() {
           </div>
           <div className="stat-info">
             <span className="stat-label">Total de terapeutas</span>
-            <span className="stat-value">{stats.terapeutas}</span>
-            <span className="stat-trend">↑ 0% <em>vs. mes anterior</em></span>
+            <span className="stat-value">{cargando ? '...' : kpis.terapeutas.actual}</span>
+            <span className="stat-trend">
+              ↑ {calcularVariacion(kpis.terapeutas.actual, kpis.terapeutas.anterior)}%
+              <em> vs. mes anterior</em>
+            </span>
           </div>
         </div>
 
+        {/* Citas */}
         <div className="stat-card yellow">
           <div className="stat-icon">
             <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff">
@@ -90,11 +105,15 @@ function InicioContent() {
           </div>
           <div className="stat-info">
             <span className="stat-label">Citas del mes</span>
-            <span className="stat-value">{stats.citasMes}</span>
-            <span className="stat-trend">↑ 0% <em>vs. mes anterior</em></span>
+            <span className="stat-value">{cargando ? '...' : kpis.citas.actual}</span>
+            <span className="stat-trend">
+              ↑ {calcularVariacion(kpis.citas.actual, kpis.citas.anterior)}%
+              <em> vs. mes anterior</em>
+            </span>
           </div>
         </div>
 
+        {/* Pagos */}
         <div className="stat-card purple">
           <div className="stat-icon">
             <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff">
@@ -103,78 +122,77 @@ function InicioContent() {
           </div>
           <div className="stat-info">
             <span className="stat-label">Pagos registrados</span>
-            <span className="stat-value">S/ {stats.pagos.toLocaleString()}</span>
-            <span className="stat-trend">↑ 0% <em>vs. mes anterior</em></span>
+            <span className="stat-value">
+              {cargando ? '...' : `S/ ${Number(kpis.pagos.actual).toLocaleString('es-PE', { minimumFractionDigits: 2 })}`}
+            </span>
+            <span className="stat-trend">
+              ↑ {calcularVariacion(kpis.pagos.actual, kpis.pagos.anterior)}%
+              <em> vs. mes anterior</em>
+            </span>
           </div>
         </div>
       </section>
 
-      {/* Fila: gráfico + próximas citas */}
-      <section className="mid-grid">
-        <div className="chart-card">
-          <div className="chart-header">
-            <div className="chart-title">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="#a855f7">
-                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/>
-              </svg>
-              <h3>Citas por especialidad</h3>
-            </div>
-            <select className="chart-select">
-              <option>Este mes</option>
-              <option>Mes anterior</option>
-            </select>
+      {/* Gráfico de citas por especialidad (ahora ocupa todo el ancho) */}
+      <section className="chart-card">
+        <div className="chart-header">
+          <div className="chart-title">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="#a855f7">
+              <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/>
+            </svg>
+            <h3>Citas por especialidad</h3>
           </div>
+          {/* 👇 Selector que actualiza el gráfico */}
+          <select
+            className="chart-select"
+            value={periodoGrafico}
+            onChange={(e) => setPeriodoGrafico(e.target.value)}
+          >
+            <option value="actual">Este mes</option>
+            <option value="anterior">Mes anterior</option>
+          </select>
+        </div>
 
-          <div className="chart-area">
-            <div className="chart-y-axis">
-              <span>20</span><span>15</span><span>10</span><span>5</span><span>0</span>
-            </div>
-            <div className="chart-bars-wrapper">
-              {citasPorEspecialidad.map((esp, i) => (
+        <div className="chart-area">
+          <div className="chart-y-axis">
+            <span>{Math.ceil(maxValorActual)}</span>
+            <span>{Math.ceil(maxValorActual * 0.75)}</span>
+            <span>{Math.ceil(maxValorActual * 0.5)}</span>
+            <span>{Math.ceil(maxValorActual * 0.25)}</span>
+            <span>0</span>
+          </div>
+          <div className="chart-bars-wrapper">
+            {especialidadesActuales.length === 0 ? (
+              <p style={{ margin: 'auto', color: '#b0b0b0', fontSize: '0.9rem' }}>
+                {cargando ? 'Cargando...' : 'Sin datos'}
+              </p>
+            ) : (
+              especialidadesActuales.map((esp, i) => (
                 <div className="bar-column" key={i}>
                   <span className="bar-value">{esp.valor}</span>
                   <div
                     className="bar"
                     style={{
-                      height: `${(esp.valor / maxValor) * 100}%`,
-                      background: esp.color
+                      height: `${(esp.valor / maxValorActual) * 100}%`,
+                      background: esp.color,
                     }}
                   ></div>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="chart-legend">
-            {citasPorEspecialidad.map((esp, i) => (
-              <div className="legend-item" key={i}>
-                <span className="legend-icon" style={{ background: esp.color }}></span>
-                <span>{esp.nombre}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="appointments-card">
-          <div className="appt-header">
-            <div className="appt-title">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="#a855f7">
-                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/>
-              </svg>
-              <h3>Próximas citas</h3>
-            </div>
-            <a href="#" className="see-all">Ver todas →</a>
-          </div>
-
-          <div className="appt-list">
-            {proximasCitas.length === 0 ? (
-              <p className="empty-msg">No hay citas próximas</p>
-            ) : (
-              proximasCitas.map((c, i) => (
-                <div className="appt-item" key={i}>...</div>
               ))
             )}
           </div>
+        </div>
+
+        <div className="chart-legend">
+          {especialidadesActuales.map((esp, i) => (
+            <div className="legend-item" key={i}>
+              <span
+                className="legend-icon"
+                style={{ background: esp.color }}
+              ></span>
+              <span>{esp.nombre}</span>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -197,8 +215,27 @@ function InicioContent() {
             <path d="M3 17l6-6 4 4 8-8M14 7h7v7"/>
           </svg>
         </div>
-        <button className="pred-btn">Ver detalle →</button>
+        <button
+          type="button"
+          className="pred-btn"
+          onClick={onIrAPrediccion}
+        >
+          Ver detalle →
+        </button>
       </section>
+
+      {/* Estado de error (si aplica) */}
+      {error && (
+        <div style={{
+          background: '#fde8ef',
+          color: '#e91e63',
+          padding: '0.8rem 1rem',
+          borderRadius: '10px',
+          fontSize: '0.85rem',
+        }}>
+          ⚠️ {error}
+        </div>
+      )}
     </>
   );
 }
@@ -333,7 +370,9 @@ export function DashboardPage() {
 
         {/* ============ MAIN ============ */}
         <main className="dash-main">
-            {seccionActiva === 'inicio' && <InicioContent />}
+            {seccionActiva === 'inicio' && (
+              <InicioContent onIrAPrediccion={() => setSeccionActiva('prediccion')} />
+            )}
             {seccionActiva === 'pacientes' && <PacientesContent />}
             {seccionActiva === 'terapeutas' && <TerapeutasContent />}
             {seccionActiva === 'especialidades' && <EspecialidadesContent />}
